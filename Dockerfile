@@ -1,7 +1,7 @@
 #Build stage
 FROM node:20-alpine AS build
 
-WORKDIR /app
+WORKDIR /app/
 
 COPY package*.json .
 
@@ -14,7 +14,7 @@ RUN npm run build
 #Production stage
 FROM node:20-alpine AS production
 
-WORKDIR /app
+WORKDIR /app/
 
 COPY package*.json .
 COPY .env .
