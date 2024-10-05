@@ -17,6 +17,7 @@ FROM node:20-alpine AS production
 WORKDIR /app
 
 COPY package*.json ./
+
 COPY .env ./
 
 RUN npm ci --only=production
