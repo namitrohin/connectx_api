@@ -12,16 +12,16 @@ COPY . .
 RUN npm run build
 
 #Production stage
-FROM node:20-alpine AS production
+# FROM node:20-alpine AS production
 
-WORKDIR /app
+# WORKDIR /app
 
-COPY package*.json ./
+# COPY package*.json ./
 
-COPY .env ./
+# COPY .env ./
 
-RUN npm ci --only=production
+# RUN npm ci --only=production
 
-COPY --from=build /app/dist ./dist
+# COPY --from=build /app/dist ./dist
 
 CMD ["node", "dist/index.js"]
