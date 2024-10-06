@@ -1,0 +1,49 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Hello CI CD') {
+            steps {
+                echo 'Hello CI CD'
+            }
+        }
+        // stage("code Clone"){
+        //     steps{
+        //       echo "clone the code"  
+        //       git url:"https://github.com/namitrohin/connectx_api.git" , branch:"main"
+        //       echo "code cloning"
+        //     }
+        // }
+        
+        stage('Node Install') {
+            steps {
+                // nodejs('Node'){
+                    echo 'Cloning Code'
+                    sh 'npm install'
+                    echo 'npm install done'
+                // }
+              
+            }
+        }
+        stage("Build"){
+            steps{
+                // nodejs('Node'){
+                    sh 'npm run build'
+                   echo "code Build done"
+                // }
+              
+              
+            }
+        }
+        stage("Deploy"){
+            steps{
+                // nodejs('Node'){
+                    sh 'pm2 start dist/index.js'
+                   echo "code Deploy done"
+                // }
+              
+              
+            }
+        }
+    }
+}
