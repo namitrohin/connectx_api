@@ -16,7 +16,7 @@ app.use(compression(comp));
 
 app.get('/', (_req: Request, res: Response) => {
     // Send a response to the client
-    res.send('Hello, Connect X');
+    res.send('Hello, Connect X ,Under Development');
 });
 app.use('api/v0', routes)
 routes
