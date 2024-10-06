@@ -16,30 +16,30 @@ pipeline {
         // }
         stage('Node Install') {
             steps {
-                // nodejs('Node'){
+                nodejs('Node'){
                     echo 'Cloning Code'
                     sh 'npm install'
                     echo 'npm install done'
-                // }
+                }
               
             }
         }
         stage("Build"){
             steps{
-                // nodejs('Node'){
+                nodejs('Node'){
                     sh 'npm run build'
                    echo "code Build done"
-                // }
+                }
               
               
             }
         }
         stage("Deploy"){
             steps{
-                // nodejs('Node'){
+                nodejs('Node'){
                     sh 'pm2 start dist/index.js'
                    echo "code Deploy done"
-                // }
+                }
             }
         }
     }
