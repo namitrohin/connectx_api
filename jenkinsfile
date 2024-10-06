@@ -41,8 +41,6 @@ pipeline {
                     sh 'pm2 start dist/index.js'
                    echo "code Deploy done"
                 // }
-              
-              
             }
         }
     }
