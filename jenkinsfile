@@ -14,7 +14,6 @@ pipeline {
         //       echo "code cloning"
         //     }
         // }
-        
         stage('Node Install') {
             steps {
                 // nodejs('Node'){
