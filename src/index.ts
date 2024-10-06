@@ -5,8 +5,7 @@ import bodyParser from 'body-parser';
 import compression from 'compression';
 import { routes } from './routes';
 dotenv.config();
-console.log(process.env.Name)
-const port: Number = 8080;
+const port: string = process.env.PORT || '9000';
 const comp: Number = 9;
 const app = express();
 app.use(bodyParser.urlencoded({ extended: true, limit: '50mb' }));
