@@ -1,46 +1,47 @@
-pipeline {
-    agent any
 
-    stages {
-        stage('Hello CI CD') {
-            steps {
-                echo 'Hello CI CD'
+@Library("Share") _
+
+pipeline{
+    agent any
+    stages{
+        stage("hello"){
+            steps{
+                script{
+                    gitClone()
+                }
             }
         }
-        // stage("code Clone"){
+        // stage("code"){
         //     steps{
         //       echo "clone the code"  
         //       git url:"https://github.com/namitrohin/connectx_api.git" , branch:"main"
         //       echo "code cloning"
         //     }
         // }
-        stage('Node Install') {
-            steps {
-                nodejs('Node'){
-                    echo 'Cloning Code'
-                    sh 'npm install'
-                    echo 'npm install done'
-                }
-              
-            }
+        stage("build"){
+           steps{
+               echo "build code"
+            //   sh "whoami"
+              sh "docker build -t connectx_api:latest ."
+              echo "docker build successfully"
+           } 
         }
-        stage("Build"){
+        stage("Push to dockerHub"){
             steps{
-                nodejs('Node'){
-                    sh 'npm run build'
-                   echo "code Build done"
+                withCredentials([usernamePassword(credentialsId:"dockerHubCred",passwordVariable:"dockerHubPass",usernameVariable:"dockerHubUser")]){
+                sh "docker login -u ${env.dockerHubUser} -p ${env.dockerHubPass}"
+                sh "docker tag connectx_api:latest ${env.dockerHubUser}/connectx_api:latest"
+                sh "docker push ${env.dockerHubUser}/connectx_api:latest"
+                echo 'image push ho gaya'
                 }
-              
-              
             }
+            
         }
-        stage("Deploy"){
-            steps{
-                nodejs('Node'){
-                    sh 'pm2 start dist/index.js'
-                   echo "code Deploy done"
-                }
-            }
+        stage("deploy"){
+          steps{
+               sh "docker-compose up -d"
+               echo "code Deploy"
+            }  
         }
     }
 }
