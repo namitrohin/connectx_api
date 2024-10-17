@@ -12,7 +12,6 @@ export default class index {
         // res.status(200).send({
         //     message: "Hello"
         // });
-
         res.status(200).send({ message: "success", data: result.rows[0] });
     }
 
