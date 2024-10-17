@@ -9,13 +9,13 @@ pipeline{
     }
     stages{
        
-        stage("Trivy: Filesystem scan"){
-            steps{
-                script{
-                    trivy_scan()
-                }
-            }
-        }
+        // stage("Trivy: Filesystem scan"){
+        //     steps{
+        //         script{
+        //             trivy_scan()
+        //         }
+        //     }
+        // }
         
         //  stage("Trivy: Filesystem scan"){
         //     steps{
