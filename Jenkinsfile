@@ -1,5 +1,5 @@
 
-@Library("share") _
+@Library("Share") _
 
 pipeline{
     agent any
@@ -36,7 +36,7 @@ pipeline{
         stage("SonarQube: Code Analysis"){
             steps{
                 script{
-                    sonarqube_analysis("Sonar","wanderlust","wanderlust")
+                    sonarqube_analysis("Sonar","connectx","connectx")
                 }
             }
         }
