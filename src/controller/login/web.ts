@@ -1,18 +1,18 @@
 // import { promises } from "dns";
 import config from "../../config";
-import { Request, Response } from 'express';
-export default class index {
-    async login(req: Request, res: Response) {
-        // console.log("hello");
-        // const client: any = await config.connect();
-        // config.connect();
-        const result = await config.query('select * from login')
-        // console.log(result)
-
-        // res.status(200).send({
-        //     message: "Hello"
-        // });
-        res.status(200).send({ message: "success", data: result.rows[0] });
+import Utils from "../../untils";
+import { apiFailureMessage, httpConstants } from '../../common/constants';
+import { Request } from "express";
+export default class Weblogic {
+    login = async (req: Request,) => {
+        if (!req) {
+            return Utils.error(
+                apiFailureMessage.INVALID_PARAMS,
+                httpConstants.RESPONSE_CODES.FORBIDDEN
+            );
+        }
+        const result = await config.query('select * from check_login($1)', [req.body.mobile_no]);
+        return result;
     }
 
 }
