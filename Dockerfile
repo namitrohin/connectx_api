@@ -19,7 +19,7 @@ WORKDIR /app/
 COPY package*.json ./
 
 COPY .env ./
-COPY docker-compose.yml ./
+# COPY docker-compose.yml ./
 
 RUN npm ci --only=production
 

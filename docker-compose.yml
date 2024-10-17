@@ -4,3 +4,8 @@ services:
     image: 'rohin123/connectx_api:latest'
     ports:
       - 8000:8000
+# services:
+#   frontend:
+#     build: .
+#     ports:
+#       - '5173:5173'
