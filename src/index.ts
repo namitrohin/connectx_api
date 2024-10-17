@@ -18,7 +18,7 @@ app.use(compression(comp));
 // console.log(config)
 app.get('/', (_req: Request, res: Response) => {
     // Send a response to the client
-    res.send('Hello, Connect X ,Develop By Rohin.');
+    res.send('Hello, Connect X ,Develop By Rohin');
 });
 routes(app);
 app.listen(port, () => {
