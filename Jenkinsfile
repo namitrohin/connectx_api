@@ -47,7 +47,7 @@ pipeline{
         //             sonarQube_code_quality()
         //         }
         //     }
-        }
+        // }
 
         
         stage("build"){
