@@ -4,51 +4,11 @@
 pipeline{
     agent any
 
-     environment{
+    environment{
         SONAR_HOME = tool "Sonar"
     }
     stages{
        
-        // stage("Trivy: Filesystem scan"){
-        //     steps{
-        //         script{
-        //             trivy_scan()
-        //         }
-        //     }
-        // }
-        
-        //  stage("Trivy: Filesystem scan"){
-        //     steps{
-        //         script{
-        //             trivy_scan()
-        //         }
-        //     }
-        // }
-
-        // stage("OWASP: Dependency check"){
-        //     steps{
-        //         script{
-        //             owasp_dependency()
-        //         }
-        //     }
-        // }
-        
-        // stage("SonarQube: Code Analysis"){
-        //     steps{
-        //         script{
-        //             sonarqube_analysis("Sonar","connectx","connectx")
-        //         }
-        //     }
-        // }
-        
-        // stage("SonarQube: Code Quality Gates"){
-        //     steps{
-        //         script{
-        //             sonarqube_code_quality()
-        //         }
-        //     }
-        // }
-
         // stage("code"){
         //     steps{
         //       echo "clone the code"  
@@ -56,6 +16,40 @@ pipeline{
         //       echo "code cloning"
         //     }
         // }
+        stage("Trivy: Filesystem scan"){
+            steps{
+                script{
+                    trivy_scan()
+                }
+            }
+        }
+        
+
+        stage("OWASP: Dependency check"){
+            steps{
+                script{
+                    owasp_dependency()
+                }
+            }
+        }
+        
+        stage("SonarQube: Code Analysis"){
+            steps{
+                script{
+                    sonarQube_analysis("Sonar","connectx_api","connectx_api")
+                }
+            }
+        }
+        
+        stage("SonarQube: Code Quality Gates"){
+            steps{
+                script{
+                    sonarQube_code_quality()
+                }
+            }
+        }
+
+        
         stage("build"){
            steps{
                echo "build code"
