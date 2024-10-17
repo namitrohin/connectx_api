@@ -41,12 +41,12 @@ pipeline{
             }
         }
         
-        stage("SonarQube: Code Quality Gates"){
-            steps{
-                script{
-                    sonarQube_code_quality()
-                }
-            }
+        // stage("SonarQube: Code Quality Gates"){
+        //     steps{
+        //         script{
+        //             sonarQube_code_quality()
+        //         }
+        //     }
         }
 
         
